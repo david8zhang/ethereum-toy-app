@@ -7,7 +7,7 @@ contract Voting {
 	to the number of votes (as an unsigned integer)
 	 */
 	
-	mapping (bytes32 => uint8) public votesRecieved;
+	mapping (bytes32 => uint8) public votesReceived;
 
 	/*
 	Solidity doesn't let you pass in a string array into the constructor, so, we'll

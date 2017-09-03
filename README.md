@@ -21,8 +21,29 @@ be found [here](https://solidity.readthedocs.io/en/develop/)
 npm install solc
 ```
 
-Type the following into the node console: 
+Make sure that the testrpc is running in a different console and type the following into the node console: 
 
 ```javascript
+Web3 = require('web3')
+web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+
+code = fs.reqdFileSync('Voting.sol').toString()
+solc = require('solc')
+compiledcode = solc.compile(code)
+```
+
+4. Deploy the contract by reating the contract object
+
+```javascript
+abiDefinition = JSON.parse(compiledCode.contracts[':Voting'].interface)
+
+VotingContract = web3.eth.contract(abiDefnition)
+
+byteCode = compiledCode.contracts[':Voting'].bytecode
+
+deployedContract = VotingContract.new(['Rama', 'Nick', 'Jose'], { data: byteCode, from: web3.eth.accounts[0], gas: 4700000})
+
+deployedContract.address
+contractInstance = VotingContract.at(deployedContract.address)
 
 ```
